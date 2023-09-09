@@ -1,0 +1,84 @@
+﻿@model Mahya.Domain.ViewModels.Admin.Account.CreateOrEditRoleViewModel
+@{
+    ViewData["Title"] = "ویرایش نقش";
+    var permissions = ViewData["permission"] as List<Permission>;
+}
+
+<form asp-area="Admin" asp-controller="User" asp-action="EditRole" method="post">
+    <input type="hidden" asp-for="Id"/>
+    <div class="row">
+        <div class="col-md-8">
+        <!-- general form elements -->
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">@ViewData["Title"]</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+ 
+            <div class="card-body">
+                <div class="form-group">
+                    <label asp-for="RoleTitle">نام نقش</label>
+                    <input asp-for="RoleTitle" type="text" class="form-control" placeholder="نقش را وارد کنید">
+                    <span asp-validation-for="RoleTitle" class="text-danger"></span>
+                </div>
+
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">ویرایش نقش</button>
+            </div>
+       
+        </div>
+            
+        <!-- /.card -->
+    </div>
+     <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <p class="card-text">دسترسی ها</p>
+                @if (permissions != null && permissions.Any())
+                {
+                    @foreach (var permission in permissions.Where(c=>c.ParentId==null))
+                    {
+                        var isPermissionSelected = Model.SelectedPermission.Any(s => s == permission.Id);
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" @(isPermissionSelected ? "checked" : "") name="@nameof(Model.SelectedPermission)" value="@permission.Id" />
+                                <span class="text">@permission.Title</span>
+                            </label>
+                        </div>
+                        @foreach (var subpermission in permissions.Where(a => a.ParentId == permission.Id))
+                        {
+                            var isSubPermissionSelected = Model.SelectedPermission.Any(s => s == subpermission.Id);
+
+                            <div class="checkbox mr-3">
+                                <label>
+                                    <input type="checkbox" @(isSubPermissionSelected ? "checked" : "") name="@nameof(Model.SelectedPermission)" value="@subpermission.Id" />
+                                    <span class="text">@subpermission.Title</span>
+                                </label>
+                            </div>
+                            @foreach (var sub2permission in permissions.Where(a => a.ParentId == subpermission.Id))
+                            {
+                                var isSub2PermissionSelected = Model.SelectedPermission.Any(s => s == sub2permission.Id);
+
+                                <div class="checkbox mr-5">
+                                    <label>
+                                        <input type="checkbox" @(isSub2PermissionSelected ? "checked" : "") name="@nameof(Model.SelectedPermission)" value="@sub2permission.Id" />
+                                        <span class="text">@sub2permission.Title</span>
+                                    </label>
+                                </div>
+                            }
+                        }
+                    }
+                }
+            </div>
+        </div>
+    </div>
+    </div>
+</form>
+@section scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
+

@@ -1,0 +1,49 @@
+﻿@model Mahya.Domain.ViewModels.Admin.Products.CreateProductFeatuersViewModel
+@{
+    ViewData["Title"] = "افزودن ویژگی محصول";
+}
+
+<div class="col-md-12">
+    <!-- general form elements -->
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">@ViewData["Title"]</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form asp-area="Admin" asp-controller="Product" asp-action="CreateProductFeature" method="post">
+            <input type="hidden" asp-for="ProductId"/>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Title">عنوان ویژگی</label>
+                            <input asp-for="Title" type="text" class="form-control" placeholder="عنوان ویژگی را وارد کنید">
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Value">محتوای ویژگی</label>
+                            <input asp-for="Value" type="text" class="form-control" placeholder="محتوای ویژگی را وارد کنید">
+                            <span asp-validation-for="Value" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">@ViewData["Title"]</button>
+            </div>
+        </form>
+    </div>
+            
+    <!-- /.card -->
+</div>
+@section scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
+

@@ -1,0 +1,109 @@
+﻿@model Mahya.Domain.ViewModels.Site.Sliders.FilterSlidersViewModel
+@{
+    ViewData["Title"] = "اسلایدر";
+    var index = 1;
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">@ViewData["Title"]</h3>
+    </div>
+    <!-- /.card-header -->
+    
+    <div class="card-body">
+       
+        <div id="example1_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+          
+            <div class="row">
+                <form asp-area="admin" asp-controller="Site" asp-action="FilterSlider" id="filter-Form" method="get">
+                    <input asp-for="PageId" type="hidden" />
+                    <div class="form-group">
+                        <label id="PhoneNumber" class="form-label">فیلتر براساس عنوان:</label>
+                        <input type="text" asp-for="SliderTitle" class="form-control" placeholder="عنوان" />
+                        <button type="submit" class="btn btn-info mt-3 mb-3 btn-block">فیلتر</button>
+                    </div>
+                   
+                </form>
+                @*<div class="col-sm-12 col-md-6">
+                    <div class="dataTables_length" id="example1_length">
+                    <label>Show
+                    <select name="example1_length" aria-controls="example1" class="form-control form-control-sm">
+                    <option value="10">10</option><option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    </select> entries</label></div></div>*@
+
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <a asp-area="Admin"asp-controller="Site"asp-action="CreateSlider" class="btn btn-app">
+                        <span class="badge bg-purple"></span>
+                        <i class="fa fa-barcode"></i> افزودن اسلایدر جدید
+                    </a>
+                    @if (Model.Sliders != null && Model.Sliders.Any())
+                    {
+                        <table id="example1" class="table table-bordered table-striped dataTable" role="grid">
+                            <thead>
+                            <tr role="row">
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="#: activate to sort column ascending">#</th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="تصویر: activate to sort column ascending">تصویر</th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="عنوان: activate to sort column ascending">عنوان</th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="متن: activate to sort column ascending">متن</th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="متن کلید: activate to sort column ascending"> متن کلید</th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="قیمت: activate to sort column ascending"> قیمت</th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="عنوان یکتاurl: activate to sort column ascending">عنوان یکتاurl</th>
+                                <th class="sorting_desc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="دستورات: activate to sort column ascending"aria-sort="descending">دستورات</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach (var slider in Model.Sliders)
+                            {
+
+                                <tr role="row" class="odd">
+                                    <td class="">@index</td>
+                                    <td>
+                                        <img src="@(PathExtensions.SliderThumb+slider.SliderImage)"style="width: 50px"/>
+                                    </td>
+                                    <td class="">@slider.SliderTitle</td>
+                                    <td class="">@slider.SliderText</td>
+                                    <td class="">@slider.TextBtn</td>
+                                    <td class="">@slider.Price.ToString("#,0")</td>
+                                    <td class="">@slider.Href</td>
+                                    <td class="sorting_1">
+                                        <a asp-area="Admin" asp-controller="Site"asp-action="EditSlider"asp-route-sliderId="@slider.Id" class="btn btn-app">
+                                            <i class="fa fa-edit"></i> ویرایش
+                                        </a>
+                                        <a asp-area="Admin" asp-controller="Site"asp-action="DeleteSlider"asp-route-sliderId="@slider.Id" class="btn btn-app">
+                                            <i class="fa fa-remove"></i> حذف
+                                        </a>
+                                    </td>
+                                </tr>
+                                index++;
+                            }
+                            </tbody>
+                            @* <tfoot>
+                                <tr><th rowspan="1" colspan="1">موتور رندر</th><th rowspan="1" colspan="1">مرورگر</th><th rowspan="1" colspan="1">سیستم عامل</th><th rowspan="1" colspan="1">ورژن</th><th rowspan="1" colspan="1">امتیاز</th></tr>
+                                </tfoot>*@
+                        </table>
+                    }
+                    else
+                    {
+                        <div class="alert alert-danger">
+                            <b>ایتمی وجود ندارد</b>
+                        </div>
+                    }
+                </div>
+            </div>
+            @*<div class="row">
+                <div class="col-sm-12 col-md-5"></div>
+                <div class="col-sm-12 col-md-7">
+                <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="example1_previous"><a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0" class="page-link">قبلی</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item next" id="example1_next"><a href="#" aria-controls="example1" data-dt-idx="4" tabindex="0" class="page-link">بعدی</a></li></ul></div>
+                </div>
+                </div>*@
+
+            @*    <partial name="_AdminPaging" />*@
+        </div>
+    </div>
+    <!-- /.card-body -->
+</div>
+

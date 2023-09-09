@@ -1,0 +1,77 @@
+﻿@model Mahya.Domain.ViewModels.Site.Sliders.CreateSliderViewModel
+@{
+    ViewData["Title"] = "ساخت اسلایدر جدید";
+}
+
+<form  asp-area="Admin" asp-controller="Site" asp-action="CreateSlider" enctype="multipart/form-data" method="post">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">@ViewData["Title"]</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <div class="card-body">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="SliderTitle">عنوان</label>
+                            <input asp-for="SliderTitle" type="text" class="form-control" placeholder="عنوان را وارد کنید">
+                            <span asp-validation-for="SliderTitle" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="SliderText"> توضیحات </label>
+                            <input type="text" asp-for="SliderText" class="form-control" placeholder="توضیحات  را وارد کنید">
+                            <span asp-validation-for="SliderText" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="TextBtn" class="form-lable"> متن کلید اسلایدر</label>
+                            <input type="text" class="form-control" asp-for="TextBtn" placeholder=" متن کلید اسلایدر را وارد کنید">
+                            <span asp-validation-for="TextBtn" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Price" class="form-lable"> قیمت </label>
+                            <input type="number" min="1" class="form-control" asp-for="Price" placeholder=" قیمت  را وارد کنید">
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Href" class="form-lable"> لینک</label>
+                            <input type="text" class="form-control" asp-for="Href" placeholder=" لینک را وارد کنید">
+                            <span asp-validation-for="Href" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                          
+                        <div class="form-group">
+                            <label class="form-lable">تصویر </label>
+                            <input type="file" class="form-control" name="ImageFile" placeholder=" تصویر  را وارد کنید">
+                        </div>
+                    </div>
+                
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">@ViewData["Title"]</button>
+                </div>
+       
+            </div>
+            
+            <!-- /.card -->
+        </div>
+    </div>
+
+</form>
+@section scripts{
+    <partial name="_ValidationScriptsPartial"/>
+
+}

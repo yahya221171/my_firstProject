@@ -1,0 +1,40 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+
+
+<!-- Mirrored from filenter.ir/molla/index-6.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 04 Jul 2021 07:40:30 GMT -->
+
+<!-- Mirrored from products.theme-file.ir/productshtml/Molla/molla/index-6.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Jul 2021 05:58:34 GMT -->
+<head>
+  @*  <partial name="_MetaTagsRefrence" />*@
+    <partial name="_HeaderRefrence"/>
+    @RenderSection("Style",false)
+</head>
+
+<body>
+    <div class="page-wrapper">
+    @await Component.InvokeAsync("SiteHeader");
+
+    @RenderBody()
+
+    @await Component.InvokeAsync("SiteFooter")
+    </div><!-- End .page-wrapper -->
+    <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
+
+    <!-- Mobile Menu -->
+
+
+<partial name="_Mobail"/>
+<partial name="_FooterRefrence "/>
+@RenderSection("Scripts",false)
+<partial name="_Message"/>
+
+</body>
+
+
+<!-- Mirrored from filenter.ir/molla/index-6.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 04 Jul 2021 07:41:13 GMT -->
+
+<!-- Mirrored from products.theme-file.ir/productshtml/Molla/molla/index-6.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Jul 2021 05:59:22 GMT -->
+</html>

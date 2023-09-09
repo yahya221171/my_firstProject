@@ -1,0 +1,81 @@
+﻿@using Mahya.App.Utils
+@model List<Mahya.Domain.Models.Account.UserFavorite>
+@{
+    ViewData["Title"] = "محصولات مورد علاقه من";
+    var index = 1;
+}
+
+<div class="container text-right mt-5 mb-5">
+    <div class="user-account">
+        <div class="row">
+            <div class="col-md-3 col-sm-4 col-xs-12">
+                <aside>
+                    @await Component.InvokeAsync("UserSideBar")
+
+                </aside>
+            </div>
+            <div class="col-md-9 col-sm-8 col-xs-12 ">
+                <section class="user-account-content box-shadow">
+                    <header>
+                        <h1>@ViewData["Title"]</h1>
+                    </header>
+                    <div class="inner">
+                        <div class="account-information">
+                            <div class="table-responsive">
+                                @if (Model != null && Model.Any())
+                                {
+                                    <table class="table table-bordered table-hover dataTable table-striped text-center">
+                                        <tr class="active">
+                                            <td>#</td>
+                                            <td>تصویر محصول</td>
+                                            <td>نام محصول</td>
+                                            <td>مبلغ(تومان)</td>
+                                            <td>وضعیت</td>
+                                        </tr>
+                                        @foreach (var favorite in Model)
+                                        {
+                                            <tr>
+                                                <td>@index</td>
+                                                <td>
+                                                    <img src="@(PathExtensions.Product1Thumb + favorite.Product.ProductImageName)" class="img-thumbnail center mr-5" style="width: 85px" />
+                                                </td>
+                                                <td>@favorite.Product.Name</td>
+                                               
+                                                @if (favorite.Product.Discount)
+                                                {
+                                                    <td>@favorite.Product.NewPrice.ToString("#,0")</td>
+
+                                                }
+                                                else
+                                                {
+                                                    <td>@favorite.Product.Price.ToString("#,0")</td>
+
+                                                }
+                                                <td class="sorting_1">
+                                                    <a asp-area="User" asp-controller="Account" asp-action="RemoveProductFavorite" asp-route-id="@favorite.Id" class="alert alert-danger btn btn-app">
+                                                        <i class="fa fa-remove"></i> حذف
+                                                    </a>
+                                                    <a asp-area="" asp-controller="Product" asp-action="ShowProductDetail" asp-route-productId="@favorite.ProductId" class="alert alert-success btn btn-app">
+                                                        <i class="fa fa-shopping-basket"></i> جزییات محصول
+                                                    </a>
+                                                </td>
+                                            </tr>
+
+                                            index
+                                            ++;
+                                        }
+
+                                    </table>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

@@ -1,0 +1,103 @@
+﻿@using Mahya.App.IServices
+ @inject IUserService _userService
+
+   @{
+       var user = await _userService.GetUserById(User.GetUserId());
+   }
+
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="../../index3.html" class="brand-link">
+        <img src="/Admin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+             style="opacity: .8">
+        <span class="brand-text font-weight-light">پنل مدیریت</span>
+    </a>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div>
+                <!-- Sidebar user panel (optional) -->
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="@(PathExtensions.UserAvatarThumb+user.Avatar)" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a href="#" class="d-block">@user.GetUserName()</a>
+                    </div>
+                </div>
+
+                <!-- Sidebar Menu -->
+            <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+                        with font-awesome or any other icon font library -->
+                        <li class="nav-item has-treeview">
+                            <a asp-area="Admin" asp-controller="User" asp-action="FilterUser" class="nav-link">
+                                <i class="nav-icon fa fa-user"></i>
+                                <p>
+                                    مدیریت کاربران
+                                    <i class="right fa fa-angle-left"></i>
+                                </p>
+                            </a>
+
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a asp-area="Admin" asp-controller="User" asp-action="FilterRole" class="nav-link">
+                                <i class="nav-icon fa fa-pencil fa-fw"></i>
+                                <p>
+                                    مدیریت نقش ها
+                                    <i class="right fa fa-angle-left"></i>
+                                </p>
+                            </a>
+
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a asp-area="Admin" asp-controller="Product" asp-action="FilterProductCategory" class="nav-link">
+                                @* <i class="nav-icon fa fa-product-hunt"></i>*@
+                                <p>
+                                    مدیریت دسته بندی محصولات
+                                    <i class="right fa fa-angle-left"></i>
+                                </p>
+                            </a>
+
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a asp-area="Admin" asp-controller="Product" asp-action="FilterProduct" class="nav-link">
+                                <i class="nav-icon fa fa-shopping-bag"></i>
+                                <p>
+                                    مدیریت محصولات
+                                    <i class="right fa fa-angle-left"></i>
+                                </p>
+                            </a>
+
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a asp-area="Admin" asp-controller="Site" asp-action="FilterSlider" class="nav-link">
+                                <i class="nav-icon fa fa-sliders"></i>
+                                <p>
+                                    مدیریت اسلایدر
+                                    <i class="right fa fa-angle-left"></i>
+                                </p>
+                            </a>
+
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a asp-area="Admin" asp-controller="Order" asp-action="FilterOrder" class="nav-link">
+                                <i class="nav-icon fa fa-shopping-basket"></i>
+                                <p>
+                                    مدیریت سفارش ها
+                                    <i class="right fa fa-angle-left"></i>
+                                </p>
+                            </a>
+
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+        </div>
+        </div>
+    }
+
+    <!-- /.sidebar -->
+</aside>

@@ -1,0 +1,108 @@
+﻿@using Mahya.Domain.Models.ProductEntity
+@model Mahya.Domain.ViewModels.Admin.Products.EditProductCategoryViewModel
+
+
+@{
+    ViewData["Title"] = "ویرایش دسته بندی محصول";
+    var index = 1;
+    var productCategory = ViewData["category"] as List<ProductCategory>;
+}
+
+<form asp-area="Admin" asp-controller="Product" asp-action="EditProductCategory" enctype="multipart/form-data" method="post">
+    <input type="hidden" asp-for="ProductCategoryId" />
+    <div class="row">
+        <div class="col-md-7">
+            <!-- general form elements -->
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">@ViewData["Title"]</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <div class="card-body">
+                    <div class="form-group">
+                        <label asp-for="Title">عنوان</label>
+                        <input asp-for="Title" type="text" class="form-control" placeholder="عنوان را وارد کنید">
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="UrlName"> url عنوان</label>
+                        <input asp-for="UrlName" type="text" class="form-control" placeholder=" url عنوان را وارد کنید">
+                        <span asp-validation-for="UrlName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-lable"> عکس</label>
+                        <input type="file" class="form-control" name="image" placeholder=" عکس را وارد کنید">
+                        <img src="@(PathExtensions.CategoryThumb+Model.ImageName)" class="img-thumbnail" />
+                    </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">افزودن دسته بندی</button>
+                </div>
+
+            </div>
+
+            <!-- /.card -->
+        </div>
+        <div class="col-md-5">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">زیر مجموعه دسته بندی</h3>
+                </div>
+              
+                <div class="card-body">
+                    @if (productCategory != null && productCategory.Any())
+                    {
+                        @foreach (var categor in productCategory.Where(c => c.ParentId == null))
+                        {
+                            var isCategorySelected = Model.SelectedCategory.Any(s => s == categor.Id);
+
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" @(isCategorySelected ? "checked" :"") name="@nameof(Model.SelectedCategory)" value="@categor.Id" />
+                                    <span class="text">@categor.Title</span>
+                                </label>
+
+                            </div>
+
+
+                            @foreach (var sub in productCategory.Where(c => c.ParentId == categor.Id))
+                            {
+                                var issubCategorySelected = Model.SelectedCategory.Any(s => s == sub.Id);
+
+                                <div class="checkbox mr-3">
+                                    <label>
+                                        <input type="checkbox" @(issubCategorySelected ? "checked" :"") name="@nameof(Model.SelectedCategory)" value="@sub.Id" />
+                                        <span class="text">@sub.Title</span>
+                                    </label>
+
+                                </div>
+                                @foreach (var sub2 in productCategory.Where(c => c.ParentId == sub.Id))
+                                {
+                                    var issub2CategorySelected = Model.SelectedCategory.Any(s => s == sub2.Id);
+
+                                    <div class="checkbox mr-5">
+                                        <label>
+                                            <input type="checkbox" @(issub2CategorySelected ? "checked" :"") name="@nameof(Model.SelectedCategory)" value="@sub2.Id" />
+                                            <span class="text">@sub2.Title</span>
+                                        </label>
+
+                                    </div>
+                                }
+                            }
+                        }
+                    }
+
+                </div>
+            </div>
+         
+        </div>
+    </div>
+
+</form>
+@section scripts{
+<partial name="_ValidationScriptsPartial" />
+}
+

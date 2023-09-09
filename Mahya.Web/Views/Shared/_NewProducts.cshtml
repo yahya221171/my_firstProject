@@ -1,0 +1,72 @@
+﻿@model List<Mahya.Domain.ViewModels.Site.Products.ProductItemViewModel>
+
+
+
+@if (Model != null && Model.Any())
+{
+    foreach (var product in Model)
+    {
+            <div class="col-6 col-md-4 col-lg-3">
+                            <div class="product product-7 text-center">
+                                <figure class="product-media">
+                                    @if (product.Discount)
+                                    {
+                                        <span class="product-label label-primary">فروش ویژه</span>
+
+                                    }
+                                    @if (!product.IsActive)
+                                    {
+                                        <span class="product-label label-sale">اتمام موجودی</span>
+
+                                    }
+                                    <a asp-area="" asp-controller="Product"asp-action="ShowProductDetail" asp-route-productId="@product.ProductId">
+                                        <img src="@(PathExtensions.Product1Orgin + product.ProductImageName1)" alt="@product.ProductName"
+                                             class="product-image">
+                                        <img src="@(PathExtensions.Product2Orgin + product.ProductImageName2)" alt="@product.ProductName"
+                                             class="product-image-hover">
+                                    </a>
+
+                                    <div class="product-action-vertical">
+                                        <a asp-area="User"asp-controller="Account" asp-action="AddUserFavorite"asp-route-productId="@product.ProductId" class="btn-product-icon btn-wishlist btn-expandable">
+                                            <span>افزودن به
+                                                لیست علاقه مندی</span></a>
+                                    </div><!-- End .product-action-vertical -->
+
+                                    <div class="product-action">
+                                        <a asp-area=""asp-controller="Product"asp-action="BuyProduct"asp-route-productId="@product.ProductId" class="btn-product btn-cart"><span>افزودن به سبد خرید</span></a>
+                                    </div><!-- End .product-action -->
+                                </figure><!-- End .product-media -->
+
+                                <div class="product-body">
+                                    <div class="product-cat text-center">
+                                        <a asp-area="" asp-controller="Product"asp-action="ShowProductDetail" asp-route-productId="@product.ProductId">@product.ProductName</a>
+                                    </div><!-- End .product-cat -->
+                                    <h3 class="product-title text-center"><a href="product.html">@product.ProductCategory.Title</a>
+                                    </h3>
+                                    <!-- End .product-title -->
+                                    <div class="product-price">
+                                        @if (product.Discount)
+                                        {
+                                            <span class="new-price">@product.NewPrice.ToString("#,0 تومان")</span>
+
+                                        }
+                                        <span class="old-price">@product.Price.ToString("#,0 تومان")</span>
+                                    </div><!-- End .product-price -->
+                                    @if (product.Images != null && product.Images.Any())
+                                    {
+                                        <div class="product-nav product-nav-thumbs">
+                                            @foreach (var image in product.Images)
+                                            {
+                                                <a href="#" class="active">
+                                                    <img src="@(PathExtensions.ProductOrgin+image)" alt="@product.ProductName">
+                                                </a>
+                                            }
+                 
+                                        </div><!-- End .product-nav -->
+                                    }
+
+                                </div><!-- End .product-body -->
+                            </div><!-- End .product -->
+                        </div><!-- End .col-sm-6 col-md-4 col-lg-3 -->
+    }
+}

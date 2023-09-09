@@ -1,0 +1,405 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\yahya\\source\\repos\\MahyaShop\\Mahya.Web\\Mahya.Web.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\yahya\\source\\repos\\MahyaShop\\Mahya.App\\Mahya.App.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\yahya\\source\\repos\\MahyaShop\\Mahya.App\\Mahya.App.csproj",
+        "projectName": "Mahya.App",
+        "projectPath": "C:\\Users\\yahya\\source\\repos\\MahyaShop\\Mahya.App\\Mahya.App.csproj",
+        "packagesPath": "C:\\Users\\yahya\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\yahya\\source\\repos\\MahyaShop\\Mahya.App\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\yahya\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "C:\\Users\\yahya\\source\\repos\\MahyaShop\\Mahya.Domain\\Mahya.Domain.csproj": {
+                "projectPath": "C:\\Users\\yahya\\source\\repos\\MahyaShop\\Mahya.Domain\\Mahya.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "LazZiya.ImageResize": {
+              "target": "Package",
+              "version": "[4.1.4, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Razor": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.ViewFeatures": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "SixLabors.ImageSharp": {
+              "target": "Package",
+              "version": "[3.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\yahya\\source\\repos\\MahyaShop\\Mahya.Domain\\Mahya.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\yahya\\source\\repos\\MahyaShop\\Mahya.Domain\\Mahya.Domain.csproj",
+        "projectName": "Mahya.Domain",
+        "projectPath": "C:\\Users\\yahya\\source\\repos\\MahyaShop\\Mahya.Domain\\Mahya.Domain.csproj",
+        "packagesPath": "C:\\Users\\yahya\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\yahya\\source\\repos\\MahyaShop\\Mahya.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\yahya\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Http.Features": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\yahya\\source\\repos\\MahyaShop\\Mahya.InfraData\\Mahya.InfraData.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\yahya\\source\\repos\\MahyaShop\\Mahya.InfraData\\Mahya.InfraData.csproj",
+        "projectName": "Mahya.InfraData",
+        "projectPath": "C:\\Users\\yahya\\source\\repos\\MahyaShop\\Mahya.InfraData\\Mahya.InfraData.csproj",
+        "packagesPath": "C:\\Users\\yahya\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\yahya\\source\\repos\\MahyaShop\\Mahya.InfraData\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\yahya\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "C:\\Users\\yahya\\source\\repos\\MahyaShop\\Mahya.App\\Mahya.App.csproj": {
+                "projectPath": "C:\\Users\\yahya\\source\\repos\\MahyaShop\\Mahya.App\\Mahya.App.csproj"
+              },
+              "C:\\Users\\yahya\\source\\repos\\MahyaShop\\Mahya.Domain\\Mahya.Domain.csproj": {
+                "projectPath": "C:\\Users\\yahya\\source\\repos\\MahyaShop\\Mahya.Domain\\Mahya.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[7.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.10, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\yahya\\source\\repos\\MahyaShop\\Mahya.IoC\\Mahya.IoC.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\yahya\\source\\repos\\MahyaShop\\Mahya.IoC\\Mahya.IoC.csproj",
+        "projectName": "Mahya.IoC",
+        "projectPath": "C:\\Users\\yahya\\source\\repos\\MahyaShop\\Mahya.IoC\\Mahya.IoC.csproj",
+        "packagesPath": "C:\\Users\\yahya\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\yahya\\source\\repos\\MahyaShop\\Mahya.IoC\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\yahya\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "C:\\Users\\yahya\\source\\repos\\MahyaShop\\Mahya.App\\Mahya.App.csproj": {
+                "projectPath": "C:\\Users\\yahya\\source\\repos\\MahyaShop\\Mahya.App\\Mahya.App.csproj"
+              },
+              "C:\\Users\\yahya\\source\\repos\\MahyaShop\\Mahya.InfraData\\Mahya.InfraData.csproj": {
+                "projectPath": "C:\\Users\\yahya\\source\\repos\\MahyaShop\\Mahya.InfraData\\Mahya.InfraData.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\yahya\\source\\repos\\MahyaShop\\Mahya.Web\\Mahya.Web.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\yahya\\source\\repos\\MahyaShop\\Mahya.Web\\Mahya.Web.csproj",
+        "projectName": "Mahya.Web",
+        "projectPath": "C:\\Users\\yahya\\source\\repos\\MahyaShop\\Mahya.Web\\Mahya.Web.csproj",
+        "packagesPath": "C:\\Users\\yahya\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\yahya\\source\\repos\\MahyaShop\\Mahya.Web\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\yahya\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "C:\\Users\\yahya\\source\\repos\\MahyaShop\\Mahya.InfraData\\Mahya.InfraData.csproj": {
+                "projectPath": "C:\\Users\\yahya\\source\\repos\\MahyaShop\\Mahya.InfraData\\Mahya.InfraData.csproj"
+              },
+              "C:\\Users\\yahya\\source\\repos\\MahyaShop\\Mahya.IoC\\Mahya.IoC.csproj": {
+                "projectPath": "C:\\Users\\yahya\\source\\repos\\MahyaShop\\Mahya.IoC\\Mahya.IoC.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "GoogleReCaptcha.V3": {
+              "target": "Package",
+              "version": "[1.3.1, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[7.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.10, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[7.0.9, )"
+            },
+            "ZarinpalSandbox": {
+              "target": "Package",
+              "version": "[2.0.4, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

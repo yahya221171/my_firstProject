@@ -1,0 +1,117 @@
+﻿@using Mahya.Domain.ViewModels.Admin.Products
+@using Mahya.Domain.ViewModels.Admin.Order
+@model Mahya.Domain.ViewModels.Admin.Order.FilterOrdersViewModel
+@{
+    ViewData["Title"] = "مدیریت سفارش ها";
+    var index = 1;
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">@ViewData["Title"]</h3>
+    </div>
+    <!-- /.card-header -->
+
+    <div class="card-body">
+
+        <div id="example1_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+
+            <div class="row">
+                <form asp-area="admin" asp-controller="Order" asp-action="FilterOrder" id="filter-Form" method="get">
+                    <input asp-for="PageId" type="hidden" />
+                    <div class="form-group">
+                        <label id="" class="form-label">فیلتر براساس وضعیت محصول:</label>
+                        <select class="form-control" asp-for="OrderStateFilter" asp-items="Html.GetEnumSelectList<OrderStateFilter>()"></select>
+                    </div>
+                    <button type="submit" class="btn btn-info mt-3 mb-3 btn-block">فیلتر</button>
+
+                </form>
+                @*<div class="col-sm-12 col-md-6">
+                    <div class="dataTables_length" id="example1_length">
+                    <label>Show
+                    <select name="example1_length" aria-controls="example1" class="form-control form-control-sm">
+                    <option value="10">10</option><option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    </select> entries</label></div></div>*@
+
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    @if (Model.Orders != null && Model.Orders.Any())
+                    {
+                        <table id="example1" class="table table-bordered table-striped dataTable" role="grid">
+                            <thead>
+                                <tr role="row">
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="#: activate to sort column ascending">#</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="کاربر: activate to sort column ascending">کاربر</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="پرداخت شده/نشده: activate to sort column ascending">پرداخت شده/نشده</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="وضعیت سفارش: activate to sort column ascending">وضعیت سفارش</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="قیمت کل: activate to sort column ascending">قیمت کل</th>
+                                    <th class="sorting_desc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="دستورات: activate to sort column ascending" aria-sort="descending">دستورات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var order in Model.Orders)
+                                {
+
+                                    <tr role="row" class="odd" id="ajax-url-item-@order.Id">
+                                        <td class="">@index</td>
+                                   
+                                        <td class="">@order.User.GetUserName()
+                                            </td>
+                                       
+                                            @if (order.IsFinaly)
+                                            {
+                                                <td class="alert alert-success">پرداخت شده</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="alert alert-danger">پرداخت نشده</td>
+                                            }
+
+                                            <td>
+                                                @order.OrderState.GetEnumName()
+                                            </td>
+                                            <td>
+                                                @order.OrderSum.ToString("#,0 تومان")
+                                            </td>
+                                        <td class="sorting_1">
+                                            <a asp-area="Admin" asp-controller="Order" asp-action="ChangeOrderStateToSent" asp-route-orderId="@order.Id" class="btn btn-app" ajax-url-button="@order.Id">
+                                                <i class="fa fa-send"></i> ارسال
+                                            </a>
+                                            <a asp-area="Admin" asp-controller="Order" asp-action="ResultOrderDetail" asp-route-orderId="@order.Id" class="btn btn-app">
+                                                <i class="fa fa-edit"></i> جزییات
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    index++;
+                                }
+                            </tbody>
+                            @* <tfoot>
+                                <tr><th rowspan="1" colspan="1">موتور رندر</th><th rowspan="1" colspan="1">مرورگر</th><th rowspan="1" colspan="1">سیستم عامل</th><th rowspan="1" colspan="1">ورژن</th><th rowspan="1" colspan="1">امتیاز</th></tr>
+                                </tfoot>*@
+                        </table>
+                    }
+               
+                    else
+                    {
+                        <div class="alert alert-danger">
+                            <b>ایتمی وجود ندارد</b>
+                        </div>
+                    }
+                </div>
+            </div>
+          @*  <div class="row">
+                <div class="col-sm-12 col-md-5"></div>
+                <div class="col-sm-12 col-md-7">
+                <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="example1_previous"><a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0" class="page-link">قبلی</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item next" id="example1_next"><a href="#" aria-controls="example1" data-dt-idx="4" tabindex="0" class="page-link">بعدی</a></li></ul></div>
+                </div>
+                </div>*@
+
+              <partial name="_AdminPaging" />
+        </div>
+    </div>
+    <!-- /.card-body -->
+</div>
+

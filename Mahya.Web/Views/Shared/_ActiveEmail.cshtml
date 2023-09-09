@@ -1,0 +1,13 @@
+﻿@model Mahya.Domain.Models.Account.User
+
+<div style="direction: rtl; padding: 20px">
+    <h2>@Model.Email عزیز !</h2>
+    <p>با تشکر از ثبت نام شما در تاپ لرن ، جهت ادامه کار میبایست حساب کاربری خود را فعال کنید</p>
+    <p>
+     @*   <a href="https://localhost:44352/Acount/ActiveAccount/@Model.MobileActiveCode" style="font-size:20px;color:#ffffff;font-weight:bold;font-family:Helvetica,Arial,sans-serif;text-decoration:none;display:inline-block" target="_blank">
+            
+        </a>*@
+        <a href="https://localhost:44352/Account/ActiveAccount/@Model.MobileActiveCode">فعالسازی حساب کاربری</a>
+    </p>
+</div>
+

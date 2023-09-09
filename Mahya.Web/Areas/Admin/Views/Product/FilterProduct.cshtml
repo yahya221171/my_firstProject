@@ -1,0 +1,140 @@
+﻿@using Mahya.Domain.ViewModels.Admin.Products
+@model Mahya.Domain.ViewModels.Admin.Products.FilterProductsViewModel
+
+
+@{
+    ViewData["Title"] = "مدیریت محصولات";
+    var index = 1;
+}
+
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">@ViewData["Title"]</h3>
+    </div>
+    <!-- /.card-header -->
+
+    <div class="card-body">
+
+        <div id="example1_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+
+            <div class="row">
+                <form asp-area="admin" asp-controller="Product" asp-action="FilterProduct" id="filter-Form" method="get">
+                    <input asp-for="PageId" type="hidden" />
+                    <div class="form-group">
+                        <label id="" class="form-label">فیلتر براساس نام محصول:</label>
+                        <input type="text" asp-for="ProductName" class="form-control" placeholder="نام محصول" />
+                    </div>
+                    <div class="form-group">
+                        <label id="" class="form-label">فیلتر براساس وضعیت محصول:</label>
+                        <select class="form-control" asp-for="ProductState" asp-items="Html.GetEnumSelectList<ProductState>()"></select>
+                    </div>
+                    <button type="submit" class="btn btn-info mt-3 mb-3 btn-block">فیلتر</button>
+
+                </form>
+                @*<div class="col-sm-12 col-md-6">
+                    <div class="dataTables_length" id="example1_length">
+                    <label>Show
+                    <select name="example1_length" aria-controls="example1" class="form-control form-control-sm">
+                    <option value="10">10</option><option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    </select> entries</label></div></div>*@
+
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <a asp-area="Admin" asp-controller="Product" asp-action="CreateProduct" class="btn btn-app">
+                        <span class="badge bg-purple"></span>
+                        <i class="fa fa-barcode"></i> افزودن محصول
+                    </a>
+                    @if (Model.Products != null && Model.Products.Any())
+                    {
+                        <table id="example1" class="table table-bordered table-striped dataTable" role="grid">
+                            <thead>
+                                <tr role="row">
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="#: activate to sort column ascending">#</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="تصویر محصول: activate to sort column ascending">تصویر محصول</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="نام محصول: activate to sort column ascending">نام محصول</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="فعال/غیرفعال: activate to sort column ascending">فعال/غیرفعال</th>
+                                    <th class="sorting_desc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="دستورات: activate to sort column ascending" aria-sort="descending">دستورات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var product in Model.Products)
+                                {
+
+                                    <tr role="row" class="odd">
+                                        <td class="">@index</td>
+                                        <td>
+                                            <img src="@(PathExtensions.Product1Thumb+product.ProductImageName)" style="width: 50px" />
+                                        </td>
+                                        <td class="">@product.Name</td>
+                                        @if (product.IsActive)
+                                        {
+                                            <td class="">فعال</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="">غیر فعال</td>
+                                        }
+                                        <td class="sorting_1">
+                                            <a asp-area="Admin" asp-controller="Product" asp-action="EditProduct" asp-route-productId="@product.Id" class="btn btn-app">
+                                                <i class="fa fa-edit"></i> ویرایش
+                                            </a>
+                                            <a asp-area="Admin" asp-controller="Product" asp-action="ProductGallries" asp-route-productId="@product.Id" class="btn btn-app">
+                                                <i class="fa fa-image"></i> افزودن گالری تصاویر
+                                            </a>
+                                            <a asp-area="Admin" asp-controller="Product" asp-action="ShowAllProductGallery"asp-route-productId="@product.Id" class="btn btn-app">
+                                                <i class="fa fa-picture-o"></i> نمایش گالری 
+                                            </a>
+                                            <a asp-area="Admin" asp-controller="Product" asp-action="CreateProductFeature"asp-route-productId="@product.Id" class="btn btn-app">
+                                                <i class="fa fa-inbox"></i> ویژگی محصول
+                                            </a>
+                                            <a asp-area="Admin" asp-controller="Product" asp-action="GetProductFeatureForShow"asp-route-productId="@product.Id" class="btn btn-app">
+                                                <i class="fa fa-inbox"></i> نمایش ویژگی ها
+                                            </a>
+                                            @if (product.IsDelete)
+                                            {
+                                                <a asp-area="Admin" asp-controller="Product" asp-action="RecoverProduct" asp-route-productId="@product.Id" class="btn btn-app">
+                                                    <i class="fa fa-recycle"></i> بازگرداندن محصول
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a asp-area="Admin" asp-controller="Product" asp-action="DeleteProduct" asp-route-productId="@product.Id" class="btn btn-app">
+                                                    <i class="fa fa-remove"></i> حذف
+                                                </a>
+                                            }
+                                        </td>
+                                    </tr>
+                                    index++;
+                                }
+                            </tbody>
+                            @* <tfoot>
+                                <tr><th rowspan="1" colspan="1">موتور رندر</th><th rowspan="1" colspan="1">مرورگر</th><th rowspan="1" colspan="1">سیستم عامل</th><th rowspan="1" colspan="1">ورژن</th><th rowspan="1" colspan="1">امتیاز</th></tr>
+                                </tfoot>*@
+                        </table>
+                    }
+               
+                    else
+                    {
+                        <div class="alert alert-danger">
+                            <b>ایتمی وجود ندارد</b>
+                        </div>
+                    }
+                </div>
+            </div>
+          @*  <div class="row">
+                <div class="col-sm-12 col-md-5"></div>
+                <div class="col-sm-12 col-md-7">
+                <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="example1_previous"><a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0" class="page-link">قبلی</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item next" id="example1_next"><a href="#" aria-controls="example1" data-dt-idx="4" tabindex="0" class="page-link">بعدی</a></li></ul></div>
+                </div>
+                </div>*@
+
+              <partial name="_AdminPaging" />
+        </div>
+    </div>
+    <!-- /.card-body -->
+</div>
+

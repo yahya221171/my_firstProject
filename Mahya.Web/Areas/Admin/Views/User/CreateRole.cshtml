@@ -1,0 +1,36 @@
+﻿@model Mahya.Domain.ViewModels.Admin.Account.CreateOrEditRoleViewModel
+@{
+    ViewData["Title"] = "افزودن نقش جدید";
+}
+
+
+<div class="col-md-6">
+    <!-- general form elements -->
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">@ViewData["Title"]</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form  asp-area="Admin" asp-controller="User" asp-action="CreateRole" method="post">
+            <div class="card-body">
+                <div class="form-group">
+                    <label asp-for="RoleTitle">نام نقش</label>
+                    <input asp-for="RoleTitle" type="text" class="form-control"  placeholder="نقش را وارد کنید">
+                    <span asp-validation-for="RoleTitle" class="text-danger"></span>
+                </div>
+                 
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">افزودن نقش</button>
+            </div>
+        </form>
+    </div>
+            
+    <!-- /.card -->
+</div>
+@section scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

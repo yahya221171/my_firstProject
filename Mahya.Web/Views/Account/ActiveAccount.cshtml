@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewData["Title"] = "فعال سازی حساب کاربری";
+    
+}
+
+@section scripts{
+    <partial name="_ValidationScriptsPartial" />
+   
+}
+
+<nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">خانه</a></li>
+            <li class="breadcrumb-item active" aria-current="page">@ViewData["Title"]</li>
+        </ol>
+    </div><!-- End .container -->
+</nav>
+<div class="container">
+    @if (ViewBag.Activat)
+    {
+        <div class="alert alert-success">
+            <p  style="color: white">حساب کاربری شما با موفقیت فعال شد</p>
+            <p>
+                <a asp-controller="Account" asp-action="Login">ورود به سایت</a>
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger">
+            <p style="color: white">حساب کاربری با مشخصات ارسال شده یافت نشد</p>
+        </div>
+    }
+</div>

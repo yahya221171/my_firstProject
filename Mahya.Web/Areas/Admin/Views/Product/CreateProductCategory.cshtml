@@ -1,0 +1,97 @@
+﻿@using Mahya.Domain.Models.ProductEntity
+@model Mahya.Domain.ViewModels.Admin.Products.CreateProductCategoryViewModel
+
+
+@{
+    ViewData["Title"] = "افزودن دسته بندی محصول";
+    var index = 1;
+    var productCategory = ViewData["SelectedCategory"] as List<ProductCategory>;
+}
+
+<form  asp-area="Admin" asp-controller="Product" asp-action="CreateProductCategory" enctype="multipart/form-data" method="post">
+    <div class="row">
+        <div class="col-md-7">
+            <!-- general form elements -->
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">@ViewData["Title"]</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <div class="card-body">
+                    <div class="form-group">
+                        <label asp-for="Title">عنوان</label>
+                        <input asp-for="Title" type="text" class="form-control"  placeholder="عنوان را وارد کنید">
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="UrlName"> url عنوان</label>
+                        <input asp-for="UrlName" type="text" class="form-control"  placeholder=" url عنوان را وارد کنید">
+                        <span asp-validation-for="UrlName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-lable"> عکس</label>
+                        <input  type="file" class="form-control" name="image"  placeholder=" عکس را وارد کنید">
+                    </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">@ViewData["Title"]</button>
+                </div>
+       
+            </div>
+            
+            <!-- /.card -->
+        </div>
+          <div class="col-md-5">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">زیر مجموعه دسته بندی</h3>
+            </div>
+                @if (productCategory != null && productCategory.Any())
+                {
+                    @foreach (var productcategor in productCategory.Where(c=>c.ParentId==null))
+                    {
+                        
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>
+                                    <input type="checkbox" name="@nameof(Model.SelectedCategory)" value="@productcategor.Id" />
+                                    <span class="text">@productcategor.Title</span>
+                                </label>
+                        
+                        @foreach (var subproductcategor in productCategory.Where(a => a.ParentId == productcategor.Id))
+                        {
+
+                            <div class="checkbox mr-3">
+                                <label>
+                                    <input type="checkbox"name="@nameof(Model.SelectedCategory)" value="@subproductcategor.Id" />
+                                    <span class="text">@subproductcategor.Title</span>
+                                </label>
+                            </div>
+                            @foreach (var sub2productcatego in productCategory.Where(a => a.ParentId == subproductcategor.Id))
+                            {
+
+                                <div class="checkbox mr-5">
+                                    <label>
+                                        <input type="checkbox"  name="@nameof(Model.SelectedCategory)" value="@sub2productcatego.Id" />
+                                        <span class="text">@sub2productcatego.Title</span>
+                                    </label>
+                                </div>
+                            }
+                        }
+                            </div>
+                        </div>
+                    }
+                }
+           
+        </div>
+    </div>
+    </div>
+
+</form>
+@section scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
+

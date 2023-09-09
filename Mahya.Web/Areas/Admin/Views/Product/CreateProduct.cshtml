@@ -1,0 +1,118 @@
+﻿@using Mahya.Domain.Models.ProductEntity
+@model Mahya.Domain.ViewModels.Admin.Products.CreateProductViewModel
+@{
+    ViewData["Title"] = "افزودن محصول";
+    var index = 1;
+    var productCategory = ViewData["SelectedCategory"] as List<ProductCategory>;
+}
+
+<form  asp-area="Admin" asp-controller="Product" asp-action="CreateProduct" enctype="multipart/form-data" method="post">
+    <div class="row">
+        <div class="col-md-7">
+            <!-- general form elements -->
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">@ViewData["Title"]</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <div class="card-body">
+                    <div class="form-group">
+                        <label asp-for="Name">نام محصول</label>
+                        <input asp-for="Name" type="text" class="form-control"  placeholder="نام محصول را وارد کنید">
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description"> توضیحات محصول</label>
+                        <textarea rows="10" asp-for="Description" class="form-control"  placeholder="توضیحات محصول را وارد کنید"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ShortDescription"  class="form-lable"> توضیحات کوتاه محصول</label>
+                        <input  type="text" class="form-control" asp-for="ShortDescription"  placeholder=" توضیحات کوتاه محصول را وارد کنید">
+                        <span asp-validation-for="ShortDescription" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Price"  class="form-lable"> قیمت محصول</label>
+                        <input  type="number" min="1" class="form-control" asp-for="Price"  placeholder=" قیمت محصول را وارد کنید">
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NewPrice"  class="form-lable"> قیمت جدید محصول</label>
+                        <input  type="number" min="1" class="form-control" asp-for="NewPrice"  placeholder=" قیمت جدید محصول را وارد کنید">
+                        <span asp-validation-for="NewPrice" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-lable">تصویر اول محصول</label>
+                        <input  type="file" class="form-control" name="image1"  placeholder=" تصویر اول محصول را وارد کنید">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-lable">تصویر دوم محصول</label>
+                        <input  type="file" class="form-control" name="image2"  placeholder=" تصویر دوم محصول را وارد کنید">
+                    </div>
+                    <div class="form-group">
+                        <label  class="form-lable"> تخفیف ویژه/حالت عادی</label>
+                        <input  type="checkbox"  asp-for="Discount">
+                        <span asp-validation-for="Discount" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label  class="form-lable"> فعال/غیرفعال</label>
+                            <input  type="checkbox"  asp-for="IsActive">
+                            <span asp-validation-for="IsActive" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">@ViewData["Title"]</button>
+                </div>
+       
+            </div>
+            
+            <!-- /.card -->
+        </div>
+          <div class="col-md-5">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">زیر مجموعه دسته بندی</h3>
+            </div>
+                @if (productCategory != null && productCategory.Any())
+                {
+                    @foreach (var productcategor in productCategory.Where(c=>c.ParentId==null))
+                    {
+                        //var isCategorySelected = Model.SelectedCategory.Any(s =>s==productcategor.Id);
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>
+                                    <input type="checkbox" name="@nameof(Model.ProductSelectedCategory)" value="@productcategor.Id" />
+                                    <span class="text">@productcategor.Title</span>
+                                </label>
+
+                            </div>
+                        </div>
+                        @foreach (var sub in productCategory.Where(c => c.ParentId == productcategor.Id))
+                        {
+                            <div class="card-body">
+                                <div class="form-group mr-3">
+                                    <label>
+                                        <input type="checkbox" name="@nameof(Model.ProductSelectedCategory)" value="@sub.Id" />
+                                        <span class="text">@sub.Title</span>
+                                    </label>
+
+                                </div>
+                            </div>
+                        }
+                    }
+                }
+           
+        </div>
+    </div>
+    </div>
+
+</form>
+@section scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
+

@@ -1,0 +1,75 @@
+﻿@model List<Mahya.Domain.Models.ProductEntity.ProductGalleries>
+@{
+    ViewData["Title"] = "نمایش گالری محصول";
+    var index = 1;
+}
+
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">@ViewData["Title"]</h3>
+    </div>
+    <!-- /.card-header -->
+    
+    <div class="card-body">
+       
+        <div id="example1_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    @if (Model != null && Model.Any())
+                    {
+                        <table id="example1" class="table table-bordered table-striped dataTable" role="grid">
+                            <thead>
+                            <tr role="row">
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="#: activate to sort column ascending">#</th>
+                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="نام: activate to sort column ascending">تصاویر</th>
+                                <th class="sorting_desc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="دستورات: activate to sort column ascending"aria-sort="descending">دستورات</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach (var gallery in Model)
+                            {
+
+                                <tr role="row" class="odd">
+                                    <td class="">@index</td>
+                                    <td >
+                                        <img src="@(PathExtensions.ProductThumb+gallery.ImageName)"class="center" style="width: 100px" />
+
+                                    </td>
+
+                                    <td class="center sorting_1">
+                                        <a  asp-area="Admin" asp-controller="Product"asp-action="DeleteGallery"asp-route-galleryId="@gallery.Id" class="btn btn-app">
+                                            <i class="fa fa-remove"></i> حذف
+                                        </a>
+                                       
+                                    </td>
+                                </tr>
+                                index++;
+                            }
+                            </tbody>
+                            @* <tfoot>
+                                <tr><th rowspan="1" colspan="1">موتور رندر</th><th rowspan="1" colspan="1">مرورگر</th><th rowspan="1" colspan="1">سیستم عامل</th><th rowspan="1" colspan="1">ورژن</th><th rowspan="1" colspan="1">امتیاز</th></tr>
+                                </tfoot>*@
+                        </table>
+                    }
+                    else
+                    {
+                        <div class="alert alert-danger">
+                            <b>ایتمی وجود ندارد</b>
+                        </div>
+                    }
+                </div>
+            </div>
+            @*<div class="row">
+                <div class="col-sm-12 col-md-5"></div>
+                <div class="col-sm-12 col-md-7">
+                <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="example1_previous"><a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0" class="page-link">قبلی</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item next" id="example1_next"><a href="#" aria-controls="example1" data-dt-idx="4" tabindex="0" class="page-link">بعدی</a></li></ul></div>
+                </div>
+                </div>*@
+
+            @*    <partial name="_AdminPaging" />*@
+        </div>
+    </div>
+    <!-- /.card-body -->
+</div>

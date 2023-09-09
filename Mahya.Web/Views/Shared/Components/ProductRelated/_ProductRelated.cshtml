@@ -1,0 +1,104 @@
+﻿@using Mahya.App.Extenstion
+@model List< Mahya.Domain.ViewModels.Site.Products.ProductItemViewModel>
+
+@if (Model != null && Model.Any())
+{
+    @foreach (var product in Model)
+    {
+          
+
+            
+      
+            <div class="owl-item active" style="width: 277px; margin-left: 20px;">
+                <div class="product product-7 text-center">
+                    <figure class="product-media">
+                        @if (product.Discount)
+                        {
+                            <span class="product-label label-new">پیشنهاد ویژه</span>
+                        }
+                        <a asp-area=""asp-controller="Product"asp-action="ShowProductDetail"asp-route-productId="@product.ProductId">
+                            <img src="@(PathExtensions.Product1Orgin+product.ProductImageName1)" alt="@product.ProductName" class="product-image">
+                        </a>
+
+                        <div class="product-action-vertical">
+                            <a href=asp-area="User"asp-controller="Account" asp-action="AddUserFavorite"asp-route-productId="@product.ProductId" class="btn-product-icon btn-wishlist btn-expandable">
+                                <span>
+                                    افزودن به
+                                    لیست علاقه مندی
+                                </span>
+                            </a>
+                            <a href="popup/quickView.html" class="btn-product-icon btn-quickview" title="مشاهده سریع"><span>مشاهده سریع</span></a>
+                            <a href="#" class="btn-product-icon btn-compare" title="مقایسه">
+                                <span>
+                                    لیست
+                                    مقایسه
+                                </span>
+                            </a>
+                        </div><!-- End .product-action-vertical -->
+
+                        <div class="product-action">
+                            <a asp-area=""asp-controller="Product"asp-action="BuyProduct"asp-route-productId="@product.ProductId" class="btn-product btn-cart"><span>افزودن به سبد خرید</span></a>
+                        </div><!-- End .product-action -->
+                    </figure><!-- End .product-media -->
+
+                    <div class="product-body">
+                        <div class="product-cat text-center">
+                            <a href="#">@product.ProductCategory.Title</a>
+                        </div><!-- End .product-cat -->
+                        <h3 class="product-title text-center">
+                            <a asp-area=""asp-controller="Product"asp-action="ShowProductDetail"asp-route-productId="@product.ProductId">@product.ProductName</a>
+                        </h3>
+                        <!-- End .product-title -->
+                        @if (product.Discount)
+                        {
+                            <div class="product-price">
+                                @product.NewPrice.ToString("#,0 تومان")
+                            </div><!-- End .product-price -->
+                        }
+                        else
+                        {
+                            <div class="product-price">
+                                @product.Price.ToString("#,0 تومان")
+                            </div><!-- End .product-price -->
+                        }
+                        <div class="ratings-container">
+                            <div class="ratings">
+                                <div class="ratings-val" style="width: 50%;"></div><!-- End .ratings-val -->
+                            </div><!-- End .ratings -->
+                            <span class="ratings-text">( @product.ProductComments دیدگاه )</span>
+                        </div><!-- End .rating-container -->
+                        @if (product.Images != null && product.Images.Any())
+                        {
+                            <div class="product-nav product-nav-thumbs">
+                                @foreach (var image in product.Images)
+                                {
+                                    <a href="#" class="active">
+                                        <img src="@(PathExtensions.ProductOrgin+image)" alt="@product.ProductName">
+                                    </a>
+                                }
+                              
+
+                            </div><!-- End .product-nav -->
+                        }
+                        
+                    </div><!-- End .product-body -->
+                </div>
+            </div>
+           
+            
+            <div class="owl-nav">
+                <button type="button" role="presentation" class="owl-prev disabled">
+                    <i class="icon-angle-left"></i>
+                </button><button type="button" role="presentation" class="owl-next">
+                    <i class="icon-angle-right"></i>
+                </button>
+            </div>
+            <div class="owl-dots disabled"></div>
+           
+        
+    }
+}
+
+
+
+
